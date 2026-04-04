@@ -1,0 +1,3 @@
+LCDproc plugin for OPNsense. Full port of the pfSense LCDproc package
+with support for 34+ LCD drivers, CARP status display, gateway monitoring,
+traffic statistics, and comprehensive system information screens.
