@@ -109,7 +109,7 @@
                 <OptionValues>
                     <_4bit>4-bit parallel port</_4bit>
                     <_8bit>8-bit parallel port</_8bit>
-                    <winamp>Winamp wiring (8-bit)</ winamp>
+                    <winamp>Winamp wiring (8-bit)</winamp>
                     <serialLpt>Serial LPT</serialLpt>
                     <picanlcd>PIC-an-LCD</picanlcd>
                     <lcdserializer>LCD Serializer</lcdserializer>
