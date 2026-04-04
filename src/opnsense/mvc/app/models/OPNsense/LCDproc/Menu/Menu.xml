@@ -1,0 +1,8 @@
+<menu>
+    <Services cssClass="fa fa-cogs" order="50">
+        <LCDproc VisibleName="LCDproc" cssClass="fa fa-tv fa-fw" order="80">
+            <General VisibleName="General" cssClass="fa fa-cog fa-fw" url="/ui/lcdproc/general" order="1"/>
+            <Screens VisibleName="Screens" cssClass="fa fa-desktop fa-fw" url="/ui/lcdproc/screens" order="2"/>
+        </LCDproc>
+    </Services>
+</menu>

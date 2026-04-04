@@ -1,0 +1,20 @@
+<acl>
+    <rules>
+        <rule>
+            <name>lcdproc.general.view</name>
+            <description>LCDproc general settings - view</description>
+        </rule>
+        <rule>
+            <name>lcdproc.general.edit</name>
+            <description>LCDproc general settings - edit</description>
+        </rule>
+        <rule>
+            <name>lcdproc.screens.view</name>
+            <description>LCDproc screen settings - view</description>
+        </rule>
+        <rule>
+            <name>lcdproc.screens.edit</name>
+            <description>LCDproc screen settings - edit</description>
+        </rule>
+    </rules>
+</acl>

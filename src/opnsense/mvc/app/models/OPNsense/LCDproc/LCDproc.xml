@@ -1,0 +1,417 @@
+<model>
+    <mount>//OPNsense/lcdproc</mount>
+    <description>LCDproc LCD display management</description>
+    <version>1.0.0</version>
+    <items>
+        <!-- General Settings -->
+        <general>
+            <enabled type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </enabled>
+            <loglevel type="OptionField">
+                <Default>2</Default>
+                <Required>Y</Required>
+                <BlankDesc>Default (Warnings)</BlankDesc>
+                <OptionValues>
+                    <m1>Disabled</m1>
+                    <_0>Critical Errors</_0>
+                    <_1>Errors</_1>
+                    <_2>Warnings</_2>
+                    <_3>Major Events</_3>
+                    <_4>Minor Events</_4>
+                    <_5>All + Debugging</_5>
+                </OptionValues>
+            </loglevel>
+            <comport type="OptionField">
+                <Default>none</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <none>None</none>
+                    <_dev_cua0>/dev/cua0 (COM1 Standard)</_dev_cua0>
+                    <_dev_cua1>/dev/cua1 (COM2 Standard)</_dev_cua1>
+                    <_dev_cuau0>/dev/cuau0 (COM1 Alternate)</_dev_cuau0>
+                    <_dev_cuau1>/dev/cuau1 (COM2 Alternate)</_dev_cuau1>
+                    <_dev_cuaU0>/dev/cuaU0 (USB COM1)</_dev_cuaU0>
+                    <_dev_cuaU1>/dev/cuaU1 (USB COM2)</_dev_cuaU1>
+                    <_dev_ttyU0>/dev/ttyU0 (USB Serial 0)</_dev_ttyU0>
+                    <_dev_ttyU1>/dev/ttyU1 (USB Serial 1)</_dev_ttyU1>
+                    <_dev_ttyU2>/dev/ttyU2 (USB Serial 2)</_dev_ttyU2>
+                    <_dev_ttyU3>/dev/ttyU3 (USB Serial 3)</_dev_ttyU3>
+                    <_dev_ugen0.2>/dev/ugen0.2 (USB Device 0.2)</_dev_ugen0.2>
+                    <_dev_ugen1.2>/dev/ugen1.2 (USB Device 1.2)</_dev_ugen1.2>
+                    <_dev_ugen2.2>/dev/ugen2.2 (USB Device 2.2)</_dev_ugen2.2>
+                    <_dev_lpt0>/dev/lpt0 (LPT1)</_dev_lpt0>
+                </OptionValues>
+            </comport>
+            <size type="OptionField">
+                <Default>20x4</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <_12x1>12x1</_12x1>
+                    <_12x2>12x2</_12x2>
+                    <_12x4>12x4</_12x4>
+                    <_16x1>16x1</_16x1>
+                    <_16x2>16x2</_16x2>
+                    <_16x4>16x4</_16x4>
+                    <_20x1>20x1</_20x1>
+                    <_20x2>20x2</_20x2>
+                    <_20x4>20x4</_20x4>
+                    <_40x2>40x2</_40x2>
+                </OptionValues>
+            </size>
+            <driver type="OptionField">
+                <Default>curses</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <bayrad>BayRAD</bayrad>
+                    <CFontz>CrystalFontz (CFontz)</CFontz>
+                    <CFontzPacket>CrystalFontz Packet (CFontzPacket)</CFontzPacket>
+                    <curses>Curses (Terminal)</curses>
+                    <CwLnx>CwLinux (CwLnx)</CwLnx>
+                    <ea65>VLSystem EA65</ea65>
+                    <EyeboxOne>EyeboxOne</EyeboxOne>
+                    <glcd>GLCD</glcd>
+                    <glk>GLK (MatrixOrbital GLK)</glk>
+                    <hd44780>HD44780 and compatibles</hd44780>
+                    <icp_a106>ICP A106</icp_a106>
+                    <IOWarrior>IOWarrior USB</IOWarrior>
+                    <lb216>LB216</lb216>
+                    <lcdm001>LCDM001</lcdm001>
+                    <lcterm>LCTerm</lcterm>
+                    <MD8800>MD8800</MD8800>
+                    <ms6931>MS6931</ms6931>
+                    <mtc_s16209x>MTC S16209x</mtc_s16209x>
+                    <MtxOrb>Matrix Orbital (MtxOrb)</MtxOrb>
+                    <NoritakeVFD>Noritake VFD</NoritakeVFD>
+                    <picolcd>picoLCD USB</picolcd>
+                    <pyramid>Pyramid</pyramid>
+                    <rawserial>Raw Serial</rawserial>
+                    <sdeclcd>SDEC LCD (Watchguard)</sdeclcd>
+                    <sed1330>SED1330</sed1330>
+                    <sed1520>SED1520</sed1520>
+                    <serialPOS>Serial POS</serialPOS>
+                    <serialVFD>Serial VFD</serialVFD>
+                    <shuttleVFD>Shuttle USB VFD</shuttleVFD>
+                    <sli>SLI</sli>
+                    <stv5730>STV5730</stv5730>
+                    <SureElec>Sure Electronics</SureElec>
+                    <t6963>T6963</t6963>
+                    <text>Text Mode</text>
+                    <tyan>Tyan</tyan>
+                    <vlsys_m428>VLSys M428</vlsys_m428>
+                </OptionValues>
+            </driver>
+            <connection_type type="OptionField">
+                <Default>4bit</Default>
+                <Required>N</Required>
+                <BlankDesc>Not applicable (non-HD44780)</BlankDesc>
+                <OptionValues>
+                    <_4bit>4-bit parallel port</_4bit>
+                    <_8bit>8-bit parallel port</_8bit>
+                    <winamp>Winamp wiring (8-bit)</winamp>
+                    <serialLpt>Serial LPT</serialLpt>
+                    <picanlcd>PIC-an-LCD</picanlcd>
+                    <lcdserializer>LCD Serializer</lcdserializer>
+                    <los_panel>LOS Panel</los_panel>
+                    <vdr_lcd>VDR LCD</vdr_lcd>
+                    <vdr_wakeup>VDR Wakeup</vdr_wakeup>
+                    <pertelian>Pertelian X2040</pertelian>
+                    <bwctusb>BWCT USB</bwctusb>
+                    <lcd2usb>LCD2USB</lcd2usb>
+                    <usbtiny>USBtiny</usbtiny>
+                    <lis2>LIS2</lis2>
+                    <mplay>MPlay (VLSystem)</mplay>
+                    <ftdi>FTDI 2232D</ftdi>
+                    <usblcd>USB LCD (Adams IT)</usblcd>
+                    <i2c>I2C (PCF8574/PCA9554)</i2c>
+                    <ezio>EZIO (Portwell)</ezio>
+                </OptionValues>
+            </connection_type>
+            <refresh_frequency type="OptionField">
+                <Default>5</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <_1>1 second</_1>
+                    <_2>2 seconds</_2>
+                    <_3>3 seconds</_3>
+                    <_5>5 seconds</_5>
+                    <_10>10 seconds</_10>
+                    <_15>15 seconds</_15>
+                </OptionValues>
+            </refresh_frequency>
+            <port_speed type="OptionField">
+                <Default>0</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <_0>Default</_0>
+                    <_1200>1200</_1200>
+                    <_2400>2400</_2400>
+                    <_9600>9600</_9600>
+                    <_19200>19200</_19200>
+                    <_57600>57600</_57600>
+                    <_115200>115200</_115200>
+                </OptionValues>
+            </port_speed>
+            <brightness type="OptionField">
+                <Default>m1</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <m1>Default</m1>
+                    <_0>0% (Off)</_0>
+                    <_10>10%</_10>
+                    <_20>20%</_20>
+                    <_30>30%</_30>
+                    <_40>40%</_40>
+                    <_50>50%</_50>
+                    <_60>60%</_60>
+                    <_70>70%</_70>
+                    <_80>80%</_80>
+                    <_90>90%</_90>
+                    <_100>100% (Full)</_100>
+                </OptionValues>
+            </brightness>
+            <offbrightness type="OptionField">
+                <Default>m1</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <m1>Default</m1>
+                    <_0>0% (Off)</_0>
+                    <_10>10%</_10>
+                    <_20>20%</_20>
+                    <_30>30%</_30>
+                    <_40>40%</_40>
+                    <_50>50%</_50>
+                    <_60>60%</_60>
+                    <_70>70%</_70>
+                    <_80>80%</_80>
+                    <_90>90%</_90>
+                    <_100>100% (Full)</_100>
+                </OptionValues>
+            </offbrightness>
+            <contrast type="OptionField">
+                <Default>m1</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <m1>Default</m1>
+                    <_0>0%</_0>
+                    <_10>10%</_10>
+                    <_20>20%</_20>
+                    <_30>30%</_30>
+                    <_40>40%</_40>
+                    <_50>50%</_50>
+                    <_60>60%</_60>
+                    <_70>70%</_70>
+                    <_80>80%</_80>
+                    <_90>90%</_90>
+                    <_100>100%</_100>
+                </OptionValues>
+            </contrast>
+            <backlight type="OptionField">
+                <Default>default</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <default>Default</default>
+                    <on>On</on>
+                    <off>Off</off>
+                </OptionValues>
+            </backlight>
+            <outputleds type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </outputleds>
+            <controlmenu type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </controlmenu>
+            <mtxorb_type type="OptionField">
+                <Default>lcd</Default>
+                <Required>N</Required>
+                <BlankDesc>Not applicable (non-Matrix Orbital)</BlankDesc>
+                <OptionValues>
+                    <lcd>LCD</lcd>
+                    <lkd>LKD</lkd>
+                    <vfd>VFD</vfd>
+                    <vkd>VKD</vkd>
+                </OptionValues>
+            </mtxorb_type>
+            <mtxorb_adjustable_backlight type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </mtxorb_adjustable_backlight>
+            <mtxorb_backlight_color type="OptionField">
+                <Default></Default>
+                <Required>N</Required>
+                <BlankDesc>Default</BlankDesc>
+                <OptionValues>
+                    <white>White</white>
+                    <gray>Gray</gray>
+                    <gray_alt>Gray (Alt)</gray_alt>
+                    <red>Red</red>
+                    <green>Green</green>
+                    <blue>Blue</blue>
+                    <cyan>Cyan</cyan>
+                    <yellow>Yellow</yellow>
+                    <yellow_alt>Yellow (Alt)</yellow_alt>
+                    <magenta>Magenta</magenta>
+                    <magenta_alt>Magenta (Alt)</magenta_alt>
+                    <purple>Purple</purple>
+                </OptionValues>
+            </mtxorb_backlight_color>
+        </general>
+        <!-- Screen Configuration -->
+        <screens>
+            <scr_version type="BooleanField">
+                <Default>1</Default>
+                <Required>Y</Required>
+            </scr_version>
+            <scr_time type="BooleanField">
+                <Default>1</Default>
+                <Required>Y</Required>
+            </scr_time>
+            <scr_uptime type="BooleanField">
+                <Default>1</Default>
+                <Required>Y</Required>
+            </scr_uptime>
+            <scr_hostname type="BooleanField">
+                <Default>1</Default>
+                <Required>Y</Required>
+            </scr_hostname>
+            <scr_system type="BooleanField">
+                <Default>1</Default>
+                <Required>Y</Required>
+            </scr_system>
+            <scr_disk type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_disk>
+            <scr_load type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_load>
+            <scr_states type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_states>
+            <scr_carp type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_carp>
+            <scr_ipsec type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_ipsec>
+            <scr_interfaces type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_interfaces>
+            <scr_interfaces_link type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_interfaces_link>
+            <scr_gwsum type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_gwsum>
+            <scr_gwstatus type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_gwstatus>
+            <scr_mbuf type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_mbuf>
+            <scr_packages type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_packages>
+            <scr_cpufrequency type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_cpufrequency>
+            <scr_cputemperature type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_cputemperature>
+            <scr_cputemperature_unit type="OptionField">
+                <Default>c</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <c>Celsius</c>
+                    <f>Fahrenheit</f>
+                </OptionValues>
+            </scr_cputemperature_unit>
+            <scr_ntp type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_ntp>
+            <scr_traffic type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_traffic>
+            <scr_traffic_interface type="InterfaceField">
+                <Required>N</Required>
+                <AllowDynamic>1</AllowDynamic>
+                <Filters>
+                    <enable>/^1$/</enable>
+                </Filters>
+            </scr_traffic_interface>
+            <scr_top_interfaces_by_bps type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_top_interfaces_by_bps>
+            <scr_top_interfaces_by_total_bytes type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_top_interfaces_by_total_bytes>
+            <scr_top_interfaces_by_bytes_today type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_top_interfaces_by_bytes_today>
+            <scr_traffic_by_address type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_traffic_by_address>
+            <scr_traffic_by_address_if type="InterfaceField">
+                <Required>N</Required>
+                <AllowDynamic>1</AllowDynamic>
+                <Filters>
+                    <enable>/^1$/</enable>
+                </Filters>
+            </scr_traffic_by_address_if>
+            <scr_traffic_by_address_sort type="OptionField">
+                <Default>in</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <in>Incoming</in>
+                    <out>Outgoing</out>
+                </OptionValues>
+            </scr_traffic_by_address_sort>
+            <scr_traffic_by_address_filter type="OptionField">
+                <Default>local</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <local>Local</local>
+                    <remote>Remote</remote>
+                    <all>All</all>
+                </OptionValues>
+            </scr_traffic_by_address_filter>
+            <scr_traffic_by_address_hostipformat type="OptionField">
+                <Default>descr</Default>
+                <Required>Y</Required>
+                <OptionValues>
+                    <descr>Description</descr>
+                    <ip>IP Address</ip>
+                </OptionValues>
+            </scr_traffic_by_address_hostipformat>
+            <scr_apcupsd type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_apcupsd>
+            <scr_nutups type="BooleanField">
+                <Default>0</Default>
+                <Required>Y</Required>
+            </scr_nutups>
+        </screens>
+    </items>
+</model>

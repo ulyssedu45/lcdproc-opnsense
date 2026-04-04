@@ -1,0 +1,194 @@
+<form>
+    <field>
+        <id>screens.scr_version</id>
+        <label>Version</label>
+        <type>checkbox</type>
+        <help>Display OPNsense software version.</help>
+    </field>
+    <field>
+        <id>screens.scr_time</id>
+        <label>Time</label>
+        <type>checkbox</type>
+        <help>Display current system time.</help>
+    </field>
+    <field>
+        <id>screens.scr_uptime</id>
+        <label>Uptime</label>
+        <type>checkbox</type>
+        <help>Display system uptime.</help>
+    </field>
+    <field>
+        <id>screens.scr_hostname</id>
+        <label>Hostname</label>
+        <type>checkbox</type>
+        <help>Display system hostname.</help>
+    </field>
+    <field>
+        <id>screens.scr_system</id>
+        <label>System</label>
+        <type>checkbox</type>
+        <help>Display general system information.</help>
+    </field>
+    <field>
+        <id>screens.scr_disk</id>
+        <label>Disk Usage</label>
+        <type>checkbox</type>
+        <help>Display disk usage statistics.</help>
+    </field>
+    <field>
+        <id>screens.scr_load</id>
+        <label>Load Averages</label>
+        <type>checkbox</type>
+        <help>Display CPU load averages.</help>
+    </field>
+    <field>
+        <id>screens.scr_states</id>
+        <label>States Table</label>
+        <type>checkbox</type>
+        <help>Display state table usage.</help>
+    </field>
+    <field>
+        <id>screens.scr_carp</id>
+        <label>CARP Status</label>
+        <type>checkbox</type>
+        <help>Display CARP (Common Address Redundancy Protocol) failover status.</help>
+    </field>
+    <field>
+        <id>screens.scr_ipsec</id>
+        <label>IPsec Status</label>
+        <type>checkbox</type>
+        <help>Display IPsec tunnel status.</help>
+    </field>
+    <field>
+        <id>screens.scr_interfaces</id>
+        <label>Interfaces</label>
+        <type>checkbox</type>
+        <help>Display interface summary.</help>
+    </field>
+    <field>
+        <id>screens.scr_interfaces_link</id>
+        <label>Interface Link Status</label>
+        <type>checkbox</type>
+        <help>Display detailed per-interface link status (IPv4, IPv6, MAC, link state).</help>
+    </field>
+    <field>
+        <id>screens.scr_gwsum</id>
+        <label>Gateway Summary</label>
+        <type>checkbox</type>
+        <help>Display gateway summary.</help>
+    </field>
+    <field>
+        <id>screens.scr_gwstatus</id>
+        <label>Gateway Status</label>
+        <type>checkbox</type>
+        <help>Display per-gateway status (status, packet loss, delay).</help>
+    </field>
+    <field>
+        <id>screens.scr_mbuf</id>
+        <label>Memory Buffers</label>
+        <type>checkbox</type>
+        <help>Display memory buffer (mbuf) usage.</help>
+    </field>
+    <field>
+        <id>screens.scr_packages</id>
+        <label>Packages</label>
+        <type>checkbox</type>
+        <help>Display package installation summary.</help>
+    </field>
+    <field>
+        <id>screens.scr_cpufrequency</id>
+        <label>CPU Frequency</label>
+        <type>checkbox</type>
+        <help>Display current and maximum CPU frequency.</help>
+    </field>
+    <field>
+        <id>screens.scr_cputemperature</id>
+        <label>CPU Temperature</label>
+        <type>checkbox</type>
+        <help>Display CPU temperature.</help>
+    </field>
+    <field>
+        <id>screens.scr_cputemperature_unit</id>
+        <label>Temperature Unit</label>
+        <type>dropdown</type>
+        <help>Temperature display unit (Celsius or Fahrenheit).</help>
+    </field>
+    <field>
+        <id>screens.scr_ntp</id>
+        <label>NTP Status</label>
+        <type>checkbox</type>
+        <help>Display NTP synchronization status and GPS satellite info.</help>
+    </field>
+    <field>
+        <id>screens.scr_traffic</id>
+        <label>Traffic</label>
+        <type>checkbox</type>
+        <help>Display traffic statistics for selected interface.</help>
+    </field>
+    <field>
+        <id>screens.scr_traffic_interface</id>
+        <label>Traffic Interface</label>
+        <type>dropdown</type>
+        <help>Select the interface for traffic display.</help>
+    </field>
+    <field>
+        <id>screens.scr_top_interfaces_by_bps</id>
+        <label>Top Interfaces by bps</label>
+        <type>checkbox</type>
+        <help>Display top interfaces ranked by bits per second.</help>
+    </field>
+    <field>
+        <id>screens.scr_top_interfaces_by_total_bytes</id>
+        <label>Top Interfaces by Total Bytes</label>
+        <type>checkbox</type>
+        <help>Display top interfaces ranked by total bytes transferred.</help>
+    </field>
+    <field>
+        <id>screens.scr_top_interfaces_by_bytes_today</id>
+        <label>Top Interfaces by Bytes Today</label>
+        <type>checkbox</type>
+        <help>Display top interfaces ranked by bytes transferred today.</help>
+    </field>
+    <field>
+        <id>screens.scr_traffic_by_address</id>
+        <label>Traffic by Address</label>
+        <type>checkbox</type>
+        <help>Display top hosts by bandwidth usage.</help>
+    </field>
+    <field>
+        <id>screens.scr_traffic_by_address_if</id>
+        <label>Traffic by Address Interface</label>
+        <type>dropdown</type>
+        <help>Select the interface for traffic by address monitoring.</help>
+    </field>
+    <field>
+        <id>screens.scr_traffic_by_address_sort</id>
+        <label>Traffic by Address Sort</label>
+        <type>dropdown</type>
+        <help>Sort traffic by address results by incoming or outgoing traffic.</help>
+    </field>
+    <field>
+        <id>screens.scr_traffic_by_address_filter</id>
+        <label>Traffic by Address Filter</label>
+        <type>dropdown</type>
+        <help>Filter traffic by address to show local, remote, or all IPs.</help>
+    </field>
+    <field>
+        <id>screens.scr_traffic_by_address_hostipformat</id>
+        <label>Host Display Format</label>
+        <type>dropdown</type>
+        <help>Display hosts by their description or IP address.</help>
+    </field>
+    <field>
+        <id>screens.scr_apcupsd</id>
+        <label>APC UPS Status</label>
+        <type>checkbox</type>
+        <help>Display APC UPS status (requires apcupsd). Shows name, status, line voltage, battery charge, time left, load.</help>
+    </field>
+    <field>
+        <id>screens.scr_nutups</id>
+        <label>NUT UPS Status</label>
+        <type>checkbox</type>
+        <help>Display NUT UPS status (requires nut). Shows UPS monitoring data.</help>
+    </field>
+</form>
