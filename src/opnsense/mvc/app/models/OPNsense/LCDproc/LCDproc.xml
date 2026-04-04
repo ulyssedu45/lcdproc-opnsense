@@ -12,7 +12,6 @@
             <loglevel type="OptionField">
                 <Default>v2</Default>
                 <Required>Y</Required>
-                <BlankDesc>Default (Warnings)</BlankDesc>
                 <OptionValues>
                     <m1>Disabled</m1>
                     <v0>Critical Errors</v0>

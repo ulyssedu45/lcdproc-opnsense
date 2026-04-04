@@ -35,19 +35,54 @@ class GeneralController extends ApiMutableModelControllerBase
     protected static $internalModelName = 'lcdproc';
     protected static $internalModelClass = '\OPNsense\LCDproc\LCDproc';
 
+    /**
+     * Retrieve model settings.
+     *
+     * The model contains two sections (general and screens) under the
+     * 'lcdproc' model name.  The JavaScript form helpers (setFormData)
+     * expect the JSON root keys to match the first segment of each form
+     * field ID (e.g. "general.enabled" → data['general']['enabled']).
+     * We therefore return the sections directly at the root level.
+     */
     public function getAction()
     {
-        $data = parent::getAction();
-        return [
-            self::$internalModelName => [
-                'general' => $data[self::$internalModelName]['general'] ?? [],
-                'screens' => $data[self::$internalModelName]['screens'] ?? []
-            ]
-        ];
+        $result = [];
+        if ($this->request->isGet()) {
+            $nodes = $this->getModel()->getNodes();
+            $result['general'] = $nodes['general'] ?? [];
+            $result['screens'] = $nodes['screens'] ?? [];
+        }
+        return $result;
     }
 
+    /**
+     * Update model settings.
+     *
+     * The JavaScript helper (getFormData / saveFormToEndpoint) posts data
+     * keyed by section name (e.g. {"general": {"enabled": "1", ...}}).
+     * The parent setAction() would look for $_POST['lcdproc'] which
+     * does not exist, so we handle both sections explicitly.
+     */
     public function setAction()
     {
-        return parent::setAction();
+        $result = ['result' => 'failed'];
+        if ($this->request->isPost()) {
+            \OPNsense\Core\Config::getInstance()->lock();
+            $mdl = $this->getModel();
+            $update = [];
+            foreach (['general', 'screens'] as $section) {
+                $sectionData = $this->request->getPost($section);
+                if (is_array($sectionData)) {
+                    $update[$section] = $sectionData;
+                }
+            }
+            $mdl->setNodes($update);
+            $result = $this->validate();
+            if (empty($result['result'])) {
+                $this->setActionHook();
+                return $this->save(false, true);
+            }
+        }
+        return $result;
     }
 }
