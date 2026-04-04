@@ -34,4 +34,20 @@ class GeneralController extends ApiMutableModelControllerBase
 {
     protected static $internalModelName = 'lcdproc';
     protected static $internalModelClass = '\OPNsense\LCDproc\LCDproc';
+
+    public function getAction()
+    {
+        $data = parent::getAction();
+        return [
+            self::$internalModelName => [
+                'general' => $data[self::$internalModelName]['general'] ?? [],
+                'screens' => $data[self::$internalModelName]['screens'] ?? []
+            ]
+        ];
+    }
+
+    public function setAction()
+    {
+        return parent::setAction();
+    }
 }
