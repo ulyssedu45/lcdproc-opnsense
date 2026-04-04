@@ -10,17 +10,17 @@
                 <Required>Y</Required>
             </enabled>
             <loglevel type="OptionField">
-                <Default>2</Default>
+                <Default>v2</Default>
                 <Required>Y</Required>
                 <BlankDesc>Default (Warnings)</BlankDesc>
                 <OptionValues>
                     <m1>Disabled</m1>
-                    <_0>Critical Errors</_0>
-                    <_1>Errors</_1>
-                    <_2>Warnings</_2>
-                    <_3>Major Events</_3>
-                    <_4>Minor Events</_4>
-                    <_5>All + Debugging</_5>
+                    <v0>Critical Errors</v0>
+                    <v1>Errors</v1>
+                    <v2>Warnings</v2>
+                    <v3>Major Events</v3>
+                    <v4>Minor Events</v4>
+                    <v5>All + Debugging</v5>
                 </OptionValues>
             </loglevel>
             <comport type="OptionField">
@@ -28,36 +28,36 @@
                 <Required>Y</Required>
                 <OptionValues>
                     <none>None</none>
-                    <_dev_cua0>/dev/cua0 (COM1 Standard)</_dev_cua0>
-                    <_dev_cua1>/dev/cua1 (COM2 Standard)</_dev_cua1>
-                    <_dev_cuau0>/dev/cuau0 (COM1 Alternate)</_dev_cuau0>
-                    <_dev_cuau1>/dev/cuau1 (COM2 Alternate)</_dev_cuau1>
-                    <_dev_cuaU0>/dev/cuaU0 (USB COM1)</_dev_cuaU0>
-                    <_dev_cuaU1>/dev/cuaU1 (USB COM2)</_dev_cuaU1>
-                    <_dev_ttyU0>/dev/ttyU0 (USB Serial 0)</_dev_ttyU0>
-                    <_dev_ttyU1>/dev/ttyU1 (USB Serial 1)</_dev_ttyU1>
-                    <_dev_ttyU2>/dev/ttyU2 (USB Serial 2)</_dev_ttyU2>
-                    <_dev_ttyU3>/dev/ttyU3 (USB Serial 3)</_dev_ttyU3>
-                    <_dev_ugen0.2>/dev/ugen0.2 (USB Device 0.2)</_dev_ugen0.2>
-                    <_dev_ugen1.2>/dev/ugen1.2 (USB Device 1.2)</_dev_ugen1.2>
-                    <_dev_ugen2.2>/dev/ugen2.2 (USB Device 2.2)</_dev_ugen2.2>
-                    <_dev_lpt0>/dev/lpt0 (LPT1)</_dev_lpt0>
+                    <dev_cua0>/dev/cua0 (COM1 Standard)</dev_cua0>
+                    <dev_cua1>/dev/cua1 (COM2 Standard)</dev_cua1>
+                    <dev_cuau0>/dev/cuau0 (COM1 Alternate)</dev_cuau0>
+                    <dev_cuau1>/dev/cuau1 (COM2 Alternate)</dev_cuau1>
+                    <dev_cuaU0>/dev/cuaU0 (USB COM1)</dev_cuaU0>
+                    <dev_cuaU1>/dev/cuaU1 (USB COM2)</dev_cuaU1>
+                    <dev_ttyU0>/dev/ttyU0 (USB Serial 0)</dev_ttyU0>
+                    <dev_ttyU1>/dev/ttyU1 (USB Serial 1)</dev_ttyU1>
+                    <dev_ttyU2>/dev/ttyU2 (USB Serial 2)</dev_ttyU2>
+                    <dev_ttyU3>/dev/ttyU3 (USB Serial 3)</dev_ttyU3>
+                    <dev_ugen0_2>/dev/ugen0.2 (USB Device 0.2)</dev_ugen0_2>
+                    <dev_ugen1_2>/dev/ugen1.2 (USB Device 1.2)</dev_ugen1_2>
+                    <dev_ugen2_2>/dev/ugen2.2 (USB Device 2.2)</dev_ugen2_2>
+                    <dev_lpt0>/dev/lpt0 (LPT1)</dev_lpt0>
                 </OptionValues>
             </comport>
             <size type="OptionField">
-                <Default>20x4</Default>
+                <Default>s20x4</Default>
                 <Required>Y</Required>
                 <OptionValues>
-                    <_12x1>12x1</_12x1>
-                    <_12x2>12x2</_12x2>
-                    <_12x4>12x4</_12x4>
-                    <_16x1>16x1</_16x1>
-                    <_16x2>16x2</_16x2>
-                    <_16x4>16x4</_16x4>
-                    <_20x1>20x1</_20x1>
-                    <_20x2>20x2</_20x2>
-                    <_20x4>20x4</_20x4>
-                    <_40x2>40x2</_40x2>
+                    <s12x1>12x1</s12x1>
+                    <s12x2>12x2</s12x2>
+                    <s12x4>12x4</s12x4>
+                    <s16x1>16x1</s16x1>
+                    <s16x2>16x2</s16x2>
+                    <s16x4>16x4</s16x4>
+                    <s20x1>20x1</s20x1>
+                    <s20x2>20x2</s20x2>
+                    <s20x4>20x4</s20x4>
+                    <s40x2>40x2</s40x2>
                 </OptionValues>
             </size>
             <driver type="OptionField">
@@ -103,12 +103,12 @@
                 </OptionValues>
             </driver>
             <connection_type type="OptionField">
-                <Default>4bit</Default>
+                <Default>c4bit</Default>
                 <Required>N</Required>
                 <BlankDesc>Not applicable (non-HD44780)</BlankDesc>
                 <OptionValues>
-                    <_4bit>4-bit parallel port</_4bit>
-                    <_8bit>8-bit parallel port</_8bit>
+                    <c4bit>4-bit parallel port</c4bit>
+                    <c8bit>8-bit parallel port</c8bit>
                     <winamp>Winamp wiring (8-bit)</winamp>
                     <serialLpt>Serial LPT</serialLpt>
                     <picanlcd>PIC-an-LCD</picanlcd>
@@ -129,28 +129,28 @@
                 </OptionValues>
             </connection_type>
             <refresh_frequency type="OptionField">
-                <Default>5</Default>
+                <Default>r5</Default>
                 <Required>Y</Required>
                 <OptionValues>
-                    <_1>1 second</_1>
-                    <_2>2 seconds</_2>
-                    <_3>3 seconds</_3>
-                    <_5>5 seconds</_5>
-                    <_10>10 seconds</_10>
-                    <_15>15 seconds</_15>
+                    <r1>1 second</r1>
+                    <r2>2 seconds</r2>
+                    <r3>3 seconds</r3>
+                    <r5>5 seconds</r5>
+                    <r10>10 seconds</r10>
+                    <r15>15 seconds</r15>
                 </OptionValues>
             </refresh_frequency>
             <port_speed type="OptionField">
-                <Default>0</Default>
+                <Default>b0</Default>
                 <Required>Y</Required>
                 <OptionValues>
-                    <_0>Default</_0>
-                    <_1200>1200</_1200>
-                    <_2400>2400</_2400>
-                    <_9600>9600</_9600>
-                    <_19200>19200</_19200>
-                    <_57600>57600</_57600>
-                    <_115200>115200</_115200>
+                    <b0>Default</b0>
+                    <b1200>1200</b1200>
+                    <b2400>2400</b2400>
+                    <b9600>9600</b9600>
+                    <b19200>19200</b19200>
+                    <b57600>57600</b57600>
+                    <b115200>115200</b115200>
                 </OptionValues>
             </port_speed>
             <brightness type="OptionField">
@@ -158,17 +158,17 @@
                 <Required>Y</Required>
                 <OptionValues>
                     <m1>Default</m1>
-                    <_0>0% (Off)</_0>
-                    <_10>10%</_10>
-                    <_20>20%</_20>
-                    <_30>30%</_30>
-                    <_40>40%</_40>
-                    <_50>50%</_50>
-                    <_60>60%</_60>
-                    <_70>70%</_70>
-                    <_80>80%</_80>
-                    <_90>90%</_90>
-                    <_100>100% (Full)</_100>
+                    <p0>0% (Off)</p0>
+                    <p10>10%</p10>
+                    <p20>20%</p20>
+                    <p30>30%</p30>
+                    <p40>40%</p40>
+                    <p50>50%</p50>
+                    <p60>60%</p60>
+                    <p70>70%</p70>
+                    <p80>80%</p80>
+                    <p90>90%</p90>
+                    <p100>100% (Full)</p100>
                 </OptionValues>
             </brightness>
             <offbrightness type="OptionField">
@@ -176,17 +176,17 @@
                 <Required>Y</Required>
                 <OptionValues>
                     <m1>Default</m1>
-                    <_0>0% (Off)</_0>
-                    <_10>10%</_10>
-                    <_20>20%</_20>
-                    <_30>30%</_30>
-                    <_40>40%</_40>
-                    <_50>50%</_50>
-                    <_60>60%</_60>
-                    <_70>70%</_70>
-                    <_80>80%</_80>
-                    <_90>90%</_90>
-                    <_100>100% (Full)</_100>
+                    <p0>0% (Off)</p0>
+                    <p10>10%</p10>
+                    <p20>20%</p20>
+                    <p30>30%</p30>
+                    <p40>40%</p40>
+                    <p50>50%</p50>
+                    <p60>60%</p60>
+                    <p70>70%</p70>
+                    <p80>80%</p80>
+                    <p90>90%</p90>
+                    <p100>100% (Full)</p100>
                 </OptionValues>
             </offbrightness>
             <contrast type="OptionField">
@@ -194,17 +194,17 @@
                 <Required>Y</Required>
                 <OptionValues>
                     <m1>Default</m1>
-                    <_0>0%</_0>
-                    <_10>10%</_10>
-                    <_20>20%</_20>
-                    <_30>30%</_30>
-                    <_40>40%</_40>
-                    <_50>50%</_50>
-                    <_60>60%</_60>
-                    <_70>70%</_70>
-                    <_80>80%</_80>
-                    <_90>90%</_90>
-                    <_100>100%</_100>
+                    <p0>0%</p0>
+                    <p10>10%</p10>
+                    <p20>20%</p20>
+                    <p30>30%</p30>
+                    <p40>40%</p40>
+                    <p50>50%</p50>
+                    <p60>60%</p60>
+                    <p70>70%</p70>
+                    <p80>80%</p80>
+                    <p90>90%</p90>
+                    <p100>100%</p100>
                 </OptionValues>
             </contrast>
             <backlight type="OptionField">

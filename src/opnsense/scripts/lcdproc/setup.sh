@@ -105,16 +105,16 @@ init_mtxorb_backlight() {
 
     # Map comport option to device path
     case "${comport}" in
-        _dev_cua0)  dev="/dev/cua0" ;;
-        _dev_cua1)  dev="/dev/cua1" ;;
-        _dev_cuau0) dev="/dev/cuau0" ;;
-        _dev_cuau1) dev="/dev/cuau1" ;;
-        _dev_cuaU0) dev="/dev/cuaU0" ;;
-        _dev_cuaU1) dev="/dev/cuaU1" ;;
-        _dev_ttyU0) dev="/dev/ttyU0" ;;
-        _dev_ttyU1) dev="/dev/ttyU1" ;;
-        _dev_ttyU2) dev="/dev/ttyU2" ;;
-        _dev_ttyU3) dev="/dev/ttyU3" ;;
+        dev_cua0)  dev="/dev/cua0" ;;
+        dev_cua1)  dev="/dev/cua1" ;;
+        dev_cuau0) dev="/dev/cuau0" ;;
+        dev_cuau1) dev="/dev/cuau1" ;;
+        dev_cuaU0) dev="/dev/cuaU0" ;;
+        dev_cuaU1) dev="/dev/cuaU1" ;;
+        dev_ttyU0) dev="/dev/ttyU0" ;;
+        dev_ttyU1) dev="/dev/ttyU1" ;;
+        dev_ttyU2) dev="/dev/ttyU2" ;;
+        dev_ttyU3) dev="/dev/ttyU3" ;;
         *)          return ;;
     esac
 
