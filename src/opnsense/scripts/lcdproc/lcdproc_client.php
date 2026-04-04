@@ -59,8 +59,8 @@ function lcdproc_get_config()
             $config['enabled'] = (string)($gen->enabled ?? '0');
             $config['driver'] = (string)($gen->driver ?? 'curses');
             $config['comport'] = (string)($gen->comport ?? 'none');
-            $config['size'] = (string)($gen->size ?? '_20x4');
-            $config['refresh_frequency'] = (string)($gen->refresh_frequency ?? '_5');
+            $config['size'] = (string)($gen->size ?? 's20x4');
+            $config['refresh_frequency'] = (string)($gen->refresh_frequency ?? 'r5');
             $config['outputleds'] = (string)($gen->outputleds ?? '0');
         }
 
@@ -90,9 +90,10 @@ function lcdproc_warn($msg)
 /* Parse display size from option key */
 function parse_display_size($size_key)
 {
-    $size_key = ltrim($size_key, '_');
+    /* Strip any leading non-numeric prefix (e.g. 's' from 's20x4', '_' from '_20x4') */
+    $size_key = preg_replace('/^[^0-9]+/', '', $size_key);
     $parts = explode('x', $size_key);
-    if (count($parts) === 2) {
+    if (count($parts) === 2 && (int)$parts[0] > 0 && (int)$parts[1] > 0) {
         return [(int)$parts[0], (int)$parts[1]];
     }
     return [20, 4]; /* default */
@@ -101,7 +102,8 @@ function parse_display_size($size_key)
 /* Parse refresh frequency from option key */
 function parse_refresh($freq_key)
 {
-    $freq_key = ltrim($freq_key, '_');
+    /* Strip any leading non-numeric prefix (e.g. 'r' from 'r5', '_' from '_5') */
+    $freq_key = preg_replace('/^[^0-9]+/', '', $freq_key);
     $val = (int)$freq_key;
     return $val > 0 ? $val : 5;
 }
@@ -1153,10 +1155,10 @@ if (($config['enabled'] ?? '0') !== '1') {
 }
 
 /* Parse display parameters */
-$size = parse_display_size($config['size'] ?? '_20x4');
+$size = parse_display_size($config['size'] ?? 's20x4');
 $cols = $size[0];
 $rows = $size[1];
-$refresh = parse_refresh($config['refresh_frequency'] ?? '_5');
+$refresh = parse_refresh($config['refresh_frequency'] ?? 'r5');
 
 lcdproc_notice("Display: {$cols}x{$rows}, Refresh: {$refresh}s, Driver: " . ($config['driver'] ?? 'unknown'));
 
@@ -1225,10 +1227,10 @@ while (true) {
                 lcdproc_warn("Reconnect failed after config change, exiting.");
                 exit(1);
             }
-            $size = parse_display_size($config['size'] ?? '_20x4');
+            $size = parse_display_size($config['size'] ?? 's20x4');
             $cols = $size[0];
             $rows = $size[1];
-            $refresh = parse_refresh($config['refresh_frequency'] ?? '_5');
+            $refresh = parse_refresh($config['refresh_frequency'] ?? 'r5');
             build_screens($fp, $config, $cols, $rows, $refresh);
         }
     }
