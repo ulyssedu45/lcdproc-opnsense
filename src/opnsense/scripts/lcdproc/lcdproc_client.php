@@ -899,7 +899,7 @@ function build_screens($fp, $config, $cols, $rows, $refresh)
                 $stats = get_traffic_stats($realif);
                 add_widget_string($fp, 'scr_traffic', 'in', 1, 2, str_pad("In: " . format_bytes($stats['in_bytes']), $cols));
                 if ($rows >= 3) {
-                    add_widget_string($fp, 'scr_traffic', 'out', 1, 3, str_pad("Out:" . format_bytes($stats['out_bytes']), $cols));
+                    add_widget_string($fp, 'scr_traffic', 'out', 1, 3, str_pad("Out: " . format_bytes($stats['out_bytes']), $cols));
                 }
             }
         }
@@ -1061,7 +1061,7 @@ function update_dynamic_screens($fp, $config, $cols, $rows)
                 $stats = get_traffic_stats($realif);
                 update_widget_string($fp, 'scr_traffic', 'in', 1, 2, str_pad("In: " . format_bytes($stats['in_bytes']), $cols));
                 if ($rows >= 3) {
-                    update_widget_string($fp, 'scr_traffic', 'out', 1, 3, str_pad("Out:" . format_bytes($stats['out_bytes']), $cols));
+                    update_widget_string($fp, 'scr_traffic', 'out', 1, 3, str_pad("Out: " . format_bytes($stats['out_bytes']), $cols));
                 }
             }
         }
