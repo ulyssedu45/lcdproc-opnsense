@@ -118,20 +118,27 @@ function lcdproc_connect()
     }
     stream_set_timeout($fp, 5);
 
-    /* Read hello message - retry a few times if empty */
+    /* Send hello - LCDproc protocol requires client to greet first */
+    fputs($fp, "hello\n");
+
+    /* Read server response: "connect LCDproc 0.5.9 protocol 0.3 lcd wid 20 hgt 4 cellwid 5 cellhgt 8" */
     $hello = '';
-    for ($attempt = 0; $attempt < 5; $attempt++) {
-        $hello = fgets($fp, 4096);
-        if ($hello !== false && strlen(trim($hello)) > 0) {
+    for ($attempt = 0; $attempt < 10; $attempt++) {
+        $line = fgets($fp, 4096);
+        if ($line !== false && strlen(trim($line)) > 0) {
+            $hello = trim($line);
             break;
         }
-        usleep(200000); /* 200ms */
+        usleep(200000); /* 200ms wait between retries */
     }
+
     if (strpos($hello, 'connect') === false) {
-        lcdproc_warn("Unexpected response from LCDd: " . trim($hello));
+        lcdproc_warn("Unexpected response from LCDd: {$hello}");
         fclose($fp);
         return false;
     }
+
+    lcdproc_notice("LCDd handshake: {$hello}");
 
     /* Set client name */
     fputs($fp, "client_set -name OPNsense\n");
