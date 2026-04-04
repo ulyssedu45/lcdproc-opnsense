@@ -69,13 +69,13 @@ start_service() {
     fi
 
     # Generate configuration from template
-    /usr/local/bin/configctl template reload OPNsense/LCDproc
+    /usr/local/sbin/configctl template reload OPNsense/LCDproc
 
     # Initialize Matrix Orbital backlight color if configured
     init_mtxorb_backlight
 
     # Start LCDd daemon with high priority
-    nice -n -20 "${LCDD_BIN}" -c "${LCDD_CONF}" -p "${PIDFILE_LCDD}"
+    nice -n -20 "${LCDD_BIN}" -c "${LCDD_CONF}"
     sleep 2
 
     # Verify LCDd started
@@ -95,9 +95,9 @@ start_service() {
 init_mtxorb_backlight() {
     # Read Matrix Orbital backlight color from config and send initialization
     # command to serial port if needed
-    driver=$(/usr/local/bin/configctl -q lcdproc general driver 2>/dev/null || true)
-    color=$(/usr/local/bin/configctl -q lcdproc general mtxorb_backlight_color 2>/dev/null || true)
-    comport=$(/usr/local/bin/configctl -q lcdproc general comport 2>/dev/null || true)
+    driver=$(/usr/local/sbin/configctl -q lcdproc general driver 2>/dev/null || true)
+    color=$(/usr/local/sbin/configctl -q lcdproc general mtxorb_backlight_color 2>/dev/null || true)
+    comport=$(/usr/local/sbin/configctl -q lcdproc general comport 2>/dev/null || true)
 
     if [ "${driver}" != "MtxOrb" ] || [ -z "${color}" ] || [ "${comport}" = "none" ]; then
         return

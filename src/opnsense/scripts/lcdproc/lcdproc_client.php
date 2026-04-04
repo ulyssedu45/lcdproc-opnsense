@@ -118,10 +118,17 @@ function lcdproc_connect()
     }
     stream_set_timeout($fp, 5);
 
-    /* Read hello message */
-    $hello = fgets($fp, 4096);
+    /* Read hello message - retry a few times if empty */
+    $hello = '';
+    for ($attempt = 0; $attempt < 5; $attempt++) {
+        $hello = fgets($fp, 4096);
+        if ($hello !== false && strlen(trim($hello)) > 0) {
+            break;
+        }
+        usleep(200000); /* 200ms */
+    }
     if (strpos($hello, 'connect') === false) {
-        lcdproc_warn("Unexpected response from LCDd: {$hello}");
+        lcdproc_warn("Unexpected response from LCDd: " . trim($hello));
         fclose($fp);
         return false;
     }
