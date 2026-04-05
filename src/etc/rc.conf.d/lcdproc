@@ -1,1 +1,2 @@
 lcdproc_setup="/usr/local/opnsense/scripts/lcdproc/setup.sh"
+lcdproc_enable="NO"

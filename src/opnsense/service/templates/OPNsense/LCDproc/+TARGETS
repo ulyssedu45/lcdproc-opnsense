@@ -1,1 +1,2 @@
 LCDd.conf:/usr/local/etc/LCDd.conf
+rc.conf.d:/etc/rc.conf.d/lcdproc
