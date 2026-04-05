@@ -293,19 +293,34 @@ function get_pfstate() {
 }
 
 /**
- * Get mbuf usage string and percentage.
+ * Get mbuf cluster usage string and percentage.
+ *
+ * Uses vmstat -z (zone allocator stats) to read the mbuf_cluster zone,
+ * matching the method used by pfSense's dashboard widget.
  */
 function get_mbuf(&$mbufs, &$mbufpercent) {
     $mbufs = "0/0";
     $mbufpercent = 0;
 
-    $output = @shell_exec("netstat -m 2>/dev/null | head -1");
-    if ($output !== null && preg_match('/([\d]+)\/([\d]+)\s+mbufs/i', $output, $m)) {
-        $cur = (int)$m[1];
-        $max = (int)$m[2];
-        $mbufs = "{$cur}/{$max}";
-        if ($max > 0) {
-            $mbufpercent = (int)round(($cur / $max) * 100);
+    $json = @shell_exec("/usr/bin/vmstat -z --libxo=json 2>/dev/null");
+    if ($json !== null) {
+        $data = @json_decode($json, true);
+        if (is_array($data)) {
+            $zones = $data['vmstat']['memory-zone-statistics']['zone'] ?? [];
+            foreach ($zones as $zone) {
+                if (($zone['name'] ?? '') === 'mbuf_cluster') {
+                    $used  = (int)($zone['used'] ?? 0);
+                    $free  = (int)($zone['free'] ?? 0);
+                    $limit = (int)($zone['limit'] ?? 0);
+                    /* Total allocated = used + cached-free (matches pfSense dashboard) */
+                    $cur   = $used + $free;
+                    $mbufs = "{$cur}/{$limit}";
+                    if ($limit > 0) {
+                        $mbufpercent = (int)round(($cur / $limit) * 100);
+                    }
+                    return;
+                }
+            }
         }
     }
 }
