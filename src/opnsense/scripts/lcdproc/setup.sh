@@ -68,20 +68,20 @@ start_service() {
         exit 0
     fi
 
-    # Check if configuration exists
-    if [ ! -f "${LCDD_CONF}" ]; then
-        echo "LCDd.conf not found. Run 'configctl template reload OPNsense/LCDproc' first."
-        exit 1
-    fi
-
     # Check if LCDd binary exists
     if [ ! -x "${LCDD_BIN}" ]; then
         echo "LCDd binary not found at ${LCDD_BIN}. Install the lcdproc package."
         exit 1
     fi
 
-    # Generate configuration from template
+    # Generate configuration from template (must run before checking config file)
     /usr/local/sbin/configctl template reload OPNsense/LCDproc
+
+    # Check if configuration was generated
+    if [ ! -f "${LCDD_CONF}" ]; then
+        echo "LCDd.conf not found after template reload."
+        exit 1
+    fi
 
     # Initialize Matrix Orbital backlight color if configured
     init_mtxorb_backlight
