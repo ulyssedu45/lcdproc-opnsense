@@ -38,5 +38,5 @@ if (
     isset($config->OPNsense->lcdproc->general->enabled) &&
     (string)$config->OPNsense->lcdproc->general->enabled == '1'
 ) {
-    mwexec('/usr/local/sbin/configctl lcdproc start');
+    shell_exec('/usr/local/sbin/configctl lcdproc start');
 }
