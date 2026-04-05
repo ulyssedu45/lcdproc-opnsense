@@ -209,7 +209,7 @@ function lcdproc_cpu_usage() {
 
 /**
  * Get memory usage as a percentage (integer).
- * Matches pfSense mem_usage() calculation.
+ * Matches opnsense mem_usage() calculation.
  */
 function mem_usage() {
     $total_pages = (int)get_single_sysctl('vm.stats.vm.v_page_count');
@@ -296,7 +296,7 @@ function get_pfstate() {
  * Get mbuf cluster usage string and percentage.
  *
  * Uses vmstat -z (zone allocator stats) to read the mbuf_cluster zone,
- * matching the method used by pfSense's dashboard widget.
+ * matching the method used by opnsense's dashboard widget.
  */
 function get_mbuf(&$mbufs, &$mbufpercent) {
     $mbufs = "0/0";
@@ -312,7 +312,7 @@ function get_mbuf(&$mbufs, &$mbufpercent) {
                     $used  = (int)($zone['used'] ?? 0);
                     $free  = (int)($zone['free'] ?? 0);
                     $limit = (int)($zone['limit'] ?? 0);
-                    /* Total allocated = used + cached-free (matches pfSense dashboard) */
+                    /* Total allocated = used + cached-free (matches opnsense dashboard) */
                     $cur   = $used + $free;
                     $mbufs = "{$cur}/{$limit}";
                     if ($limit > 0) {
