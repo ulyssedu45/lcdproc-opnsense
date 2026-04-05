@@ -48,7 +48,7 @@
                 <Default>s16x2</Default>
                 <Required>Y</Required>
                 <OptionValues>
-                    <s12x1>1 rows 12 columns</s12x1>
+                    <s12x1>1 row 12 columns</s12x1>
                     <s12x2>2 rows 12 columns</s12x2>
                     <s12x4>4 rows 12 columns</s12x4>
                     <s16x1>1 row 16 columns</s16x1>
