@@ -115,6 +115,11 @@ init_mtxorb_backlight() {
         dev_ttyU1) dev="/dev/ttyU1" ;;
         dev_ttyU2) dev="/dev/ttyU2" ;;
         dev_ttyU3) dev="/dev/ttyU3" ;;
+        dev_ugen0_2) dev="/dev/ugen0.2" ;;
+        dev_ugen1_2) dev="/dev/ugen1.2" ;;
+        dev_ugen1_3) dev="/dev/ugen1.3" ;;
+        dev_ugen2_2) dev="/dev/ugen2.2" ;;
+        dev_lpt0) dev="/dev/lpt0" ;;
         *)          return ;;
     esac
 

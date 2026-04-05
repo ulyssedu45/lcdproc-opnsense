@@ -1,113 +1,110 @@
 <form>
     <field>
         <id>general.enabled</id>
-        <label>Enable LCDproc</label>
+        <label>Enable</label>
         <type>checkbox</type>
-        <help>Enable or disable the LCDproc service.</help>
+        <help>Enable LCDproc service.</help>
     </field>
     <field>
         <id>general.loglevel</id>
         <label>Log Level</label>
         <type>dropdown</type>
-        <help>Set the log level for LCDd daemon. Default is Warnings.</help>
+        <help>Choose the level of detail the LCDproc daemon will write to the system log.</help>
     </field>
     <field>
         <id>general.comport</id>
-        <label>COM Port</label>
+        <label>COM port</label>
         <type>dropdown</type>
-        <help>Select the serial/USB/parallel port where your LCD display is connected.</help>
+        <help>Set the com port LCDproc should use.</help>
     </field>
     <field>
         <id>general.size</id>
         <label>Display Size</label>
         <type>dropdown</type>
-        <help>Select the display dimensions (columns x rows).</help>
+        <help>Set the display size LCDproc should use.</help>
     </field>
     <field>
         <id>general.driver</id>
-        <label>LCD Driver</label>
+        <label>Driver</label>
         <type>dropdown</type>
-        <help>Select the driver for your LCD display hardware.</help>
+        <help>Select the LCD driver LCDproc should use. Some drivers will show additional settings.</help>
     </field>
     <field>
         <id>general.connection_type</id>
-        <label>Connection Type (HD44780)</label>
+        <label>Connection Type</label>
         <type>dropdown</type>
-        <help>Connection type for HD44780-compatible displays. Only applicable when HD44780 driver is selected.</help>
+        <help>Select the HD44780 connection type.</help>
         <advanced>true</advanced>
     </field>
     <field>
-        <id>general.refresh_frequency</id>
-        <label>Refresh Frequency</label>
+        <id>general.mtxorb_type</id>
+        <label>Display Type</label>
         <type>dropdown</type>
-        <help>How often the LCD display content is refreshed.</help>
+        <help>Select the Matrix Orbital display type.</help>
+        <advanced>true</advanced>
+    </field>
+    <field>
+        <id>general.mtxorb_adjustable_backlight</id>
+        <label>Has adjustable backlight</label>
+        <type>checkbox</type>
+        <help>Some firmware versions of Matrix Orbital and compatible modules do not support an adjustable backlight and only can switch the backlight on/off. If the LCD experiences randomly appearing block characters and the backlight cannot be switched on or off, uncheck the adjustable backlight option.</help>
+        <advanced>true</advanced>
+    </field>
+    <field>
+        <id>general.mtxorb_backlight_color</id>
+        <label>Background Color</label>
+        <type>dropdown</type>
+        <help>LCD Background Color. Some Matrix Orbital compatible Adafruit controller boards have extended commands to set the background color. This works independently of the adjustable backlight checkbox. Leave at default if this feature is not supported.</help>
+        <advanced>true</advanced>
     </field>
     <field>
         <id>general.port_speed</id>
         <label>Port Speed</label>
         <type>dropdown</type>
-        <help>Serial port baud rate. Use Default unless you have specific requirements.</help>
+        <help>Set the port speed. Caution: not all the driver or panels support all the speeds, leave "default" if unsure.</help>
+    </field>
+    <field>
+        <id>general.refresh_frequency</id>
+        <label>Refresh Frequency</label>
+        <type>dropdown</type>
+        <help>Set the duration for which each info screen will be displayed.</help>
+    </field>
+    <field>
+        <id>general.outputleds</id>
+        <label>Enable Output LEDs</label>
+        <type>checkbox</type>
+        <help>Enable the output LEDs present on some LCD panels. This feature is currently supported by the CFontzPacket driver only.</help>
+        <advanced>true</advanced>
+    </field>
+    <field>
+        <id>general.controlmenu</id>
+        <label>OPNsense control menu</label>
+        <type>checkbox</type>
+        <help>Enable the OPNsense control menu next to LCDproc's Options menu. Requires a display with buttons (e.g. CrystalFontz 635/735/835). Currently supports several basic functions including reboot and halt.</help>
+        <advanced>true</advanced>
     </field>
     <field>
         <id>general.brightness</id>
         <label>Brightness</label>
         <type>dropdown</type>
-        <help>Display brightness when backlight is on. Not all drivers support this.</help>
-        <advanced>true</advanced>
-    </field>
-    <field>
-        <id>general.offbrightness</id>
-        <label>Off Brightness</label>
-        <type>dropdown</type>
-        <help>Display brightness when backlight is off. Not all drivers support this.</help>
-        <advanced>true</advanced>
+        <help>Set the brightness of the LCD panel. This option is not supported by all the LCD panels, leave "default" if unsure.</help>
     </field>
     <field>
         <id>general.contrast</id>
         <label>Contrast</label>
         <type>dropdown</type>
-        <help>Display contrast level. Not all drivers support this.</help>
-        <advanced>true</advanced>
+        <help>Set the contrast of the LCD panel. This option is not supported by all the LCD panels, leave "default" if unsure.</help>
     </field>
     <field>
         <id>general.backlight</id>
         <label>Backlight</label>
         <type>dropdown</type>
-        <help>Backlight control setting.</help>
+        <help>Set the backlight setting. If set to the default value, then the backlight setting of the display can be influenced by the clients. This option is not supported by all the LCD panels, leave "default" if unsure.</help>
     </field>
     <field>
-        <id>general.outputleds</id>
-        <label>Output LEDs</label>
-        <type>checkbox</type>
-        <help>Enable status LEDs output (CFontzPacket displays only). LEDs indicate CARP and gateway status.</help>
-        <advanced>true</advanced>
-    </field>
-    <field>
-        <id>general.controlmenu</id>
-        <label>Control Menu</label>
-        <type>checkbox</type>
-        <help>Enable the built-in LCDd server menu (navigate via display buttons).</help>
-        <advanced>true</advanced>
-    </field>
-    <field>
-        <id>general.mtxorb_type</id>
-        <label>Matrix Orbital Type</label>
+        <id>general.offbrightness</id>
+        <label>Off Brightness</label>
         <type>dropdown</type>
-        <help>Matrix Orbital display type. Only applicable for MtxOrb driver.</help>
-        <advanced>true</advanced>
-    </field>
-    <field>
-        <id>general.mtxorb_adjustable_backlight</id>
-        <label>Matrix Orbital Adjustable Backlight</label>
-        <type>checkbox</type>
-        <help>Enable adjustable backlight for Matrix Orbital displays that support it.</help>
-        <advanced>true</advanced>
-    </field>
-    <field>
-        <id>general.mtxorb_backlight_color</id>
-        <label>Matrix Orbital Backlight Color</label>
-        <type>dropdown</type>
-        <help>Backlight color for Matrix Orbital displays with RGB LED backlighting.</help>
-        <advanced>true</advanced>
+        <help>Set the off-brightness of the LCD panel. This value is used when the display is normally switched off in case LCDd is inactive. This option is not supported by all the LCD panels, leave "default" if unsure.</help>
     </field>
 </form>
