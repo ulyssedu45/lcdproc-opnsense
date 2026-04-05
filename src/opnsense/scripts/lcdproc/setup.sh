@@ -56,6 +56,18 @@ stop_service() {
 }
 
 start_service() {
+    # Check if LCDproc is enabled in OPNsense configuration
+    enabled=$(/usr/local/bin/php -r "
+        \$xml = @simplexml_load_file('/conf/config.xml');
+        echo (\$xml && isset(\$xml->OPNsense->lcdproc->general->enabled))
+            ? (string)\$xml->OPNsense->lcdproc->general->enabled
+            : '0';
+    " 2>/dev/null)
+    if [ "${enabled}" != "1" ]; then
+        echo "LCDproc is not enabled in configuration"
+        exit 0
+    fi
+
     # Check if configuration exists
     if [ ! -f "${LCDD_CONF}" ]; then
         echo "LCDd.conf not found. Run 'configctl template reload OPNsense/LCDproc' first."

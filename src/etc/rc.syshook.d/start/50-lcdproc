@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# OPNsense LCDproc boot startup hook
+# This script is called by OPNsense during system boot to auto-start
+# the LCDproc service if it is enabled in the configuration.
+
+/usr/local/sbin/configctl lcdproc start 2>/dev/null || true
