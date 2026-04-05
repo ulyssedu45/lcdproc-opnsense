@@ -28,7 +28,6 @@
  */
 
 require_once('config.inc');
-require_once('util.inc');
 
 use OPNsense\Core\Config;
 
@@ -38,5 +37,5 @@ if (
     isset($config->OPNsense->lcdproc->general->enabled) &&
     (string)$config->OPNsense->lcdproc->general->enabled == '1'
 ) {
-    mwexec('/usr/local/sbin/configctl lcdproc start');
+    exec('/usr/local/sbin/configctl lcdproc start');
 }
