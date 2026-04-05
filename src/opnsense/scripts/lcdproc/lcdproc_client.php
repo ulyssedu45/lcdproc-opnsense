@@ -402,17 +402,13 @@ function find_interface_ip($realif) {
 function find_interface_ipv6($realif) {
     $output = @shell_exec("ifconfig " . escapeshellarg($realif) . " 2>/dev/null");
     if ($output !== null) {
-        /* Match global IPv6 (not link-local fe80::) */
-        if (preg_match('/inet6\s+([0-9a-f:]+)(?:%\S+)?\s+prefixlen/i', $output, $matches)) {
-            $all_lines = explode("\n", $output);
-            foreach ($all_lines as $line) {
-                if (preg_match('/inet6\s+([0-9a-f:]+)/i', $line, $m)) {
-                    if (strpos($m[1], 'fe80') !== 0) {
-                        return $m[1];
-                    }
+        $all_lines = explode("\n", $output);
+        foreach ($all_lines as $line) {
+            if (preg_match('/inet6\s+([0-9a-f:]+)/i', $line, $m)) {
+                if (strpos($m[1], 'fe80') !== 0) {
+                    return $m[1];
                 }
             }
-            return $matches[1];
         }
     }
     return '';
@@ -1209,12 +1205,7 @@ function build_interface($lcd) {
             "widget_add scr_traffic text_wdgt string",
             "widget_set scr_traffic text_wdgt 1 2 \"\"",
         ]);
-        if ($rows >= 3) {
-            send_lcd_commands($lcd, [
-                "widget_add scr_traffic text_wdgt2 string",
-                "widget_set scr_traffic text_wdgt2 1 3 \"\"",
-            ]);
-        }
+        /* pfSense: traffic screen gets standard summary bar on 4-line displays */
         if ($rows >= 4) {
             send_lcd_commands($lcd, [
                 "widget_add scr_traffic title_summary string",
@@ -1751,25 +1742,18 @@ function output_status($lcd) {
         }
 
         if (!empty($traffic_if)) {
-            $ifdescrs = get_configured_interface_with_descr();
-            $if_label = $ifdescrs[$traffic_if] ?? strtoupper($traffic_if);
             $bps = get_traffic_bps($traffic_if);
 
             $in_str = sprintf("IN:  %s", format_bps($bps['in_bps']));
             $out_str = sprintf("OUT: %s", format_bps($bps['out_bps']));
 
+            /* pfSense layout: line 1 = IN data, line 2 = OUT data */
             send_lcd_commands($lcd, [
-                "widget_set scr_traffic title_wdgt 1 1 \"{$if_label}\"",
-                "widget_set scr_traffic text_wdgt 1 2 \"{$in_str}\"",
+                "widget_set scr_traffic title_wdgt 1 1 \"{$in_str}\"",
+                "widget_set scr_traffic text_wdgt 1 2 \"{$out_str}\"",
             ]);
-            if ($rows >= 3) {
-                send_lcd_commands($lcd, [
-                    "widget_set scr_traffic text_wdgt2 1 3 \"{$out_str}\"",
-                ]);
-            }
             if ($rows >= 4) {
                 send_lcd_commands($lcd, [
-                    "widget_set scr_traffic title_summary 1 3 \"{$out_str}\"",
                     "widget_set scr_traffic text_summary 1 4 \"{$lcd_summary_data}\"",
                 ]);
             }
@@ -2168,7 +2152,7 @@ function handle_menu_event($event_line) {
  */
 function loop_status($lcd) {
     global $refresh_frequency, $lcdpanel_width, $lcdpanel_height;
-    global $lcdproc_config;
+    global $lcdproc_config, $lcdproc_screen_config;
 
     $looped = 0;
     $config_reload_interval = 60; /* Reload config every 60 cycles (~5 min at 5s refresh) */
@@ -2230,14 +2214,14 @@ function loop_status($lcd) {
             $looped = 0;
 
             /* Save current config for comparison */
-            $old_screen_config = $GLOBALS['lcdproc_screen_config'];
-            $old_config = $GLOBALS['lcdproc_config'];
+            $old_screen_config = $lcdproc_screen_config;
+            $old_config = $lcdproc_config;
 
             lcdproc_read_config();
 
             /* Check if config changed */
-            if ($GLOBALS['lcdproc_screen_config'] !== $old_screen_config ||
-                $GLOBALS['lcdproc_config'] !== $old_config) {
+            if ($lcdproc_screen_config !== $old_screen_config ||
+                $lcdproc_config !== $old_config) {
                 lcdproc_notice("Configuration changed, rebuilding screens");
 
                 /* Reconnect to reset all screens */
